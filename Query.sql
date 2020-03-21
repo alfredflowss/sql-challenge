@@ -17,3 +17,11 @@ from dept_manager m
 inner join departments dep on dep.dept_no = m.dept_no
 inner join dept_emp d on m.dept_no = d.dept_no
 inner join employees e on e.emp_no = d.emp_no;
+
+-- pulling the department of each employee with the 
+-- following information: employee number, last name, first name, and department name.
+select e.emp_no, 
+e.last_name,e.first_name, dep.dept_name
+from employees e
+left join dept_emp d on e.emp_no = d.emp_no
+left join departments dep on dep.dept_no = d.dept_no;
