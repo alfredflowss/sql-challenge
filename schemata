@@ -2,13 +2,17 @@
 CREATE TABLE departments ( 
 	dept_no VARCHAR,
 	dept_name VARCHAR
-	)
+	PRIMARY KEY (dept_no),
+   )
 -- creating the employee department table 
 CREATE TABLE dept_emp (
 	emp_no INTEGER,
 	dept_no VARCHAR,
 	from_date date DEFAULT ('now'::text)::date NOT NULL,
-	to_date date DEFAULT ('now'::text)::date NOT NULL
+	to_date date DEFAULT ('now'::text)::date NOT NULL,
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
+	)
 	
 -- creating the managers table
 CREATE TABLE dept_manager (
@@ -16,6 +20,8 @@ CREATE TABLE dept_manager (
 	emp_no INTEGER,
 	from_date date DEFAULT ('now'::text)::date NOT NULL,
 	to_date date DEFAULT ('now'::text)::date NOT NULL
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
 	)
 -- creating th employees table
 CREATE TABLE employees (
@@ -25,15 +31,17 @@ CREATE TABLE employees (
 	last_name VARCHAR,
 	gender VARCHAR,
 	hire_date date DEFAULT ('now'::text)::date NOT NULL
+	PRIMARY KEY (emp_no)
 	) 
 
 -- creating the salaries table 	
 CREATE TABLE salaries (
-	emp_no INTEGEdate DEFAULT ('now'::text)::date NOT NULLR,
+	emp_no INTEGER date DEFAULT ('now'::text)::date NOT NULLR,
 	salary INTEGER,
 	from_date date DEFAULT ('now'::text)::date NOT NULL,
 	to_date date DEFAULT ('now'::text)::date NOT NULL
-	)
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    )
 
 -- creating the employee title table
 CREATE TABLE titles (
@@ -41,4 +49,5 @@ CREATE TABLE titles (
 	title VARCHAR,
 	from_date date DEFAULT ('now'::text)::date NOT NULL,
 	to_date date DEFAULT ('now'::text)::date NOT NULL
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
 	)
