@@ -1,2 +1,2 @@
 # sql-challenge
-SQL schema and advanced query homework 
+Developing an employee database management system in Postgresql on Amazon AWS cloud 
